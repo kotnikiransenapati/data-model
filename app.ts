@@ -43,6 +43,7 @@ function updateCounts(): void {
 function createTaskRow(task: Task): HTMLLIElement {
   const row = document.createElement("li");
   row.className = `task-row status-${task.status}`;
+  row.dataset.taskId = String(task.id);
 
   const dot = document.createElement("span");
   dot.className = "task-dot";
@@ -54,6 +55,7 @@ function createTaskRow(task: Task): HTMLLIElement {
 
   const status = document.createElement("span");
   status.className = "status-badge";
+  status.tabIndex = -1;
   status.textContent =
     task.status === "todo"
       ? "To start"
@@ -76,6 +78,27 @@ function createTaskRow(task: Task): HTMLLIElement {
   action.addEventListener("click", () => {
     tasks = advanceTask(tasks, task.id);
     render();
+
+    const updatedAction = taskList.querySelector<HTMLButtonElement>(
+      `[data-task-id="${task.id}"] .advance-button`,
+    );
+    if (updatedAction !== null && !updatedAction.disabled) {
+      updatedAction.focus();
+      return;
+    }
+
+    const updatedStatus = taskList.querySelector<HTMLElement>(
+      `[data-task-id="${task.id}"] .status-badge`,
+    );
+    if (updatedStatus !== null) {
+      updatedStatus.focus();
+      return;
+    }
+
+    const activeFilterButton = Array.from(filterButtons).find(
+      (button) => parseFilter(button.dataset.filter) === activeFilter,
+    );
+    activeFilterButton?.focus();
   });
 
   row.append(dot, title, status, action);
