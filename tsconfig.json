@@ -16,9 +16,9 @@
     // and npm install -D @types/node
 
     // Other Outputs
-    "sourceMap": true,
-    "declaration": true,
-    "declarationMap": true,
+    "sourceMap": false,
+    "declaration": false,
+    "declarationMap": false,
 
     // Stricter Typechecking Options
     "noUncheckedIndexedAccess": true,
@@ -39,8 +39,8 @@
     "noUncheckedSideEffectImports": true,
     "moduleDetection": "force",
     "skipLibCheck": true,
-    "noEmit": true
+    "noEmit": false
   },
-  "include": ["*.ts"],
-  "exclude": ["node_modules", ".test-build"]
+  "include": ["app.ts", "model.ts"],
+  "exclude": ["node_modules", ".test-build", "*.test.ts"]
 }

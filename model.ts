@@ -27,6 +27,19 @@ export function completeTask(tasks: Task[], id: number): Task[] {
   );
 }
 
+export function advanceTask(tasks: Task[], id: number): Task[] {
+  return tasks.map((task) => {
+    if (task.id !== id) {
+      return task;
+    }
+
+    return {
+      ...task,
+      status: task.status === "todo" ? "in-progress" : "done",
+    };
+  });
+}
+
 export function filterByStatus(tasks: Task[], status: TaskStatus): Task[] {
   return tasks.filter((task) => task.status === status);
 }

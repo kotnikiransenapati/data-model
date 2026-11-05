@@ -6,7 +6,7 @@
   "main": "index.js",
   "scripts": {
     "typecheck": "tsc --noEmit",
-    "test": "tsc --noEmit false --outDir .test-build && node .test-build/model.test.js"
+    "test": "tsc --ignoreConfig --noEmit false --outDir .test-build --rootDir . --target ES2020 --module NodeNext --strict --skipLibCheck --noUncheckedIndexedAccess --exactOptionalPropertyTypes --declaration false --declarationMap false --sourceMap false model.ts model.test.ts && node .test-build/model.test.js"
   },
   "keywords": [],
   "author": "",

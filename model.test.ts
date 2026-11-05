@@ -1,4 +1,11 @@
-import { addTask, completeTask, countByStatus, filterByStatus, type Task } from "./model.js";
+import {
+  addTask,
+  advanceTask,
+  completeTask,
+  countByStatus,
+  filterByStatus,
+  type Task,
+} from "./model.js";
 
 const assert = (condition: boolean, message: string): void => {
   if (!condition) {
@@ -20,6 +27,14 @@ assert(tasks.length === 2, "addTask should not mutate the input array");
 const completed = completeTask(tasks, 2);
 assert(completed[0]?.status === "done", "completeTask should mark the matching task done");
 assert(tasks[0]?.status === "todo", "completeTask should not mutate the input task");
+
+const advancedOnce = advanceTask(tasks, 2);
+assert(advancedOnce[0]?.status === "in-progress", "advanceTask should move todo tasks to in-progress");
+assert(tasks[0]?.status === "todo", "advanceTask should not mutate the input task");
+
+const advancedTwice = advanceTask(advancedOnce, 2);
+assert(advancedTwice[0]?.status === "done", "advanceTask should move in-progress tasks to done");
+assert(advanceTask(advancedTwice, 2)[0]?.status === "done", "advanceTask should keep done tasks done");
 
 const todoTasks = filterByStatus(tasks, "todo");
 assert(todoTasks.length === 1 && todoTasks[0]?.id === 2, "filterByStatus should return matching tasks");
