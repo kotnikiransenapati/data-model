@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="A calm, thoughtful space to move your tasks forward."
+    />
+    <title>Morrow Tasks — Make room for what matters</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="masthead">
+        <a class="wordmark" href="#" aria-label="Morrow Tasks home">
+          <span class="wordmark-mark" aria-hidden="true">m.</span>
+          <span>MORROW</span>
+        </a>
+        <span class="edition">YOUR DAY, IN GOOD ORDER</span>
+      </header>
+
+      <section class="intro" aria-labelledby="page-title">
+        <p class="eyebrow">A LITTLE MOMENTUM GOES A LONG WAY</p>
+        <h1 id="page-title">Make room for<br />what matters.</h1>
+        <p class="intro-copy">
+          One clear next step. Then another. Keep your day moving at your pace.
+        </p>
+      </section>
+
+      <section class="overview" aria-label="Task overview">
+        <div class="overview-heading">
+          <span>YOUR TASKS</span>
+          <span><span id="task-count">0</span> TOTAL</span>
+        </div>
+        <div class="stat-grid">
+          <article class="stat-card stat-todo">
+            <span class="stat-label">TO START</span>
+            <span class="stat-value" id="todo-count">0</span>
+          </article>
+          <article class="stat-card stat-progress">
+            <span class="stat-label">IN MOTION</span>
+            <span class="stat-value" id="progress-count">0</span>
+          </article>
+          <article class="stat-card stat-done">
+            <span class="stat-label">ACROSS THE LINE</span>
+            <span class="stat-value" id="done-count">0</span>
+          </article>
+        </div>
+      </section>
+
+      <section class="task-panel" aria-labelledby="task-panel-title">
+        <div class="panel-heading">
+          <div>
+            <p class="eyebrow">START SMALL</p>
+            <h2 id="task-panel-title">Your list</h2>
+          </div>
+          <span class="panel-note">A good place to begin.</span>
+        </div>
+
+        <form class="task-form" id="task-form">
+          <label class="sr-only" for="task-title">Add a task</label>
+          <input
+            id="task-title"
+            name="title"
+            type="text"
+            maxlength="120"
+            placeholder="What would you like to move forward?"
+            autocomplete="off"
+            required
+          />
+          <button class="add-button" type="submit">
+            <span aria-hidden="true">+</span> Add task
+          </button>
+        </form>
+
+        <nav class="filter-bar" aria-label="Filter tasks by status">
+          <div class="filter-buttons">
+            <button class="filter-button" type="button" data-filter="all" aria-pressed="true">All</button>
+            <button class="filter-button" type="button" data-filter="todo" aria-pressed="false">To start</button>
+            <button class="filter-button" type="button" data-filter="in-progress" aria-pressed="false">In motion</button>
+            <button class="filter-button" type="button" data-filter="done" aria-pressed="false">Done</button>
+          </div>
+          <span class="list-hint">Select a task to keep it moving</span>
+        </nav>
+
+        <ul class="task-list" id="task-list" aria-live="polite" aria-relevant="additions removals text"></ul>
+      </section>
+
+      <footer class="page-footer">
+        <span>MADE FOR THE NEXT GOOD THING.</span>
+        <span>TAKE IT ONE STEP AT A TIME.</span>
+      </footer>
+    </main>
+    <script type="module" src="app.js"></script>
+  </body>
+</html>
